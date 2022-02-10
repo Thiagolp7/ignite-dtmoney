@@ -1,8 +1,15 @@
-function App() {
+import { Dashboard } from "./components/Dashboard";
+import { Header } from "./components/Header";
+import { GlobalStyle } from "./styles/global";
 
+export function App() {
   return (
-    <h1>Hellof vite</h1>
+    <>
+      <Header/>
+      <Dashboard/>
+      <GlobalStyle/>
+    </>
   )
 }
 
-export default App
+
