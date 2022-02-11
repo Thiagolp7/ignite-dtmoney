@@ -8,7 +8,8 @@ export const GlobalStyle = createGlobalStyle`
     --blue: #5429cc;
     --blue-light: #6933ff;
     --white: #FFFFFF;
-    --light-grey: #F8F2F5;
+    --light-grey: #F0F2F5;
+    --light-grey02: #E7E9EE;
     --grey: #969cb3;
     --dark-grey: #363f5f;
 
@@ -18,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     --main-bg: var(--light-grey);
     --header-btn-bg: var(--blue-light);
     --header-btn-color: var(--white);
+    --input-bg: var(--light-grey02);
     --text-title: var(--dark-grey);
     --text-body: var(--grey);
     --shape: var(--white);
@@ -57,5 +59,33 @@ export const GlobalStyle = createGlobalStyle`
     cursor: not-allowed;
   }
 
+  .react-modal-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
+  .react-modal-content {
+    width: 100%;
+    max-width: 576px;
+    background: var(--main-bg) ;
+    border-radius: .5rem;
+    padding: 6.4rem 4.8rem;
+    position: relative;
+  }
+ 
+  .react-modal-close {
+    background: transparent;
+    border: 0;
+    position: absolute;
+    top: .8rem;
+    right: .8rem;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 `
