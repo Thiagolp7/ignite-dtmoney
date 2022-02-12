@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
 import Modal from 'react-modal'
 import { Container, RadioBox } from './styles';
 
 import incomeSvg from '../../assets/income.svg'
 import outcomeSvg from '../../assets/outcome.svg'
 import closeSvg from '../../assets/close.svg'
+import { TransactionsContext } from '../../TransactionsProvider';
 
 Modal.setAppElement('#root')
 
@@ -13,11 +14,32 @@ interface NewTransactionModalProps {
   handleNewTransactionModalClose: () => void;
 }
 
-export const NewTransactionModal = ({ NewTransactionModalIsOpen,handleNewTransactionModalClose }: NewTransactionModalProps) => {
-  
-  const [transactionType, setTransactionType] = useState('deposit');
+export const NewTransactionModal = ({ NewTransactionModalIsOpen, handleNewTransactionModalClose }: NewTransactionModalProps) => {
+  const [title, setTitle] = useState('');
+  const [amount, setAmount] = useState(0);
+  const [type, setType] = useState('deposit');
+  const [category, setCategory] = useState('');
 
-  console.log(transactionType)
+  const { createNewTransaction } = useContext(TransactionsContext)
+
+  function handleCreateTransaction(event: FormEvent){
+    event.preventDefault()
+
+    const transactionData = {
+      title,
+      amount,
+      type,
+      category,
+      createdAt: new Date()
+    }
+
+    createNewTransaction(transactionData);
+    setTitle('');
+    setAmount(0);
+    setType('deposit');
+    setCategory('');
+    handleNewTransactionModalClose();
+  }
 
   return (
     <Modal 
@@ -31,29 +53,44 @@ export const NewTransactionModal = ({ NewTransactionModalIsOpen,handleNewTransac
       >
         <img src={closeSvg} alt="" />
       </button>
-      <Container>
+      <Container onSubmit={handleCreateTransaction}>
         <h2>Cadastrar transação</h2>
-        <input type="text" placeholder='Nome'/>
-        <input type="number" placeholder='Preço'/>
+        <input 
+          type="text" 
+          placeholder='Nome'
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <input 
+          type="number" 
+          placeholder='Preço'
+          value={amount === 0 ? '' : amount}
+          onChange={(e) => setAmount(Number(e.target.value))}
+        />
         <RadioBox>
           <button 
             type='button' 
-            className={transactionType === 'deposit' ? 'deposit' : ''}
-            onClick={() => {setTransactionType('deposit')}}
+            className={type === 'deposit' ? 'deposit' : ''}
+            onClick={() => {setType('deposit')}}
           >
             <img src={incomeSvg} alt="Entrada" />
             <span>Entrada</span>
           </button>
           <button 
             type='button' 
-            className={transactionType === 'withdraw' ? 'withdraw' : ''}
-            onClick={() => {setTransactionType('withdraw')}}
+            className={type === 'withdraw' ? 'withdraw' : ''}
+            onClick={() => {setType('withdraw')}}
           >
             <img src={outcomeSvg} alt="Saída" />
             <span>Saída</span>
           </button>
         </RadioBox>
-        <input type="text" placeholder='Categoria'/>
+        <input 
+          type="text" 
+          placeholder='Categoria'
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        />
         <button 
           type="submit"
         >Cadastrar</button>

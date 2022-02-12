@@ -14,7 +14,7 @@ export const Container = styled.form`
   }
 
   input {
-    color: var(--text-body);
+    color: var(--text-title);
     background: var(--input-bg);
     padding: 2rem 2.4rem;
     font-size: 1.6rem;
@@ -24,7 +24,6 @@ export const Container = styled.form`
     & + input {
       margin-top: 1.6rem;
     }
-
   }
 
   button[type="submit"] {
@@ -84,7 +83,5 @@ export const RadioBox = styled.div`
       background: ${transparentize(.9, "#E52E40")};
     }
   }
-
-  
 
 `

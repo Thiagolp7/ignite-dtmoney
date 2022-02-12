@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import { Container } from "./styles"
 import { FaTrash } from 'react-icons/fa'
-
+import { TransactionsContext } from "../../TransactionsProvider";
 
 export const TransactionsTable = () => {
+  const { transactions, deleteTransaction } = useContext(TransactionsContext);
   return (
     <Container>
       <thead>
@@ -14,24 +16,25 @@ export const TransactionsTable = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Desenvolvimento website</td>
-          <td className="deposit">R$ 2.000,00</td>
-          <td>dev</td>
-          <td>13/04/2021</td>
-          <td>
-            <button><FaTrash size={16} /></button>
-          </td>
-        </tr>
-        <tr>
-          <td>Supermercado</td>
-          <td className="withdraw">- R$ 1.000,00</td>
-          <td>compras</td>
-          <td>20/04/2021</td>
-          <td>
-            <button><FaTrash size={16} /></button>
-          </td>
-        </tr>
+        {transactions.map(transaction => {
+          return (
+          <tr key={transaction.id}>
+            <td>{transaction.title}</td>
+            <td className={transaction.type}>
+              {transaction.type === 'withdraw' ?  '-' : ''}
+              {new Intl.NumberFormat('pt-BR', {
+                style: 'currency', currency: 'BRL' 
+                }).format(transaction.amount)}
+            </td>
+            <td>{transaction.category}</td>
+            <td>{new Intl.DateTimeFormat('pt-BR')
+              .format(new Date(transaction.createdAt))}</td>
+            <td>
+              <button onClick={() => {deleteTransaction(transaction)}}><FaTrash size={16} /></button>
+            </td>
+          </tr>
+          )
+        })}
       </tbody>
     </Container>
   )
