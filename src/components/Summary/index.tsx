@@ -1,14 +1,14 @@
+import { useEffect, useState } from "react"
+import { useTransactions } from "../../hooks/useTransactions"
+
 import { Container } from "./styles"
 
 import incomeSvg from '../../assets/income.svg'
 import outcomeSvg from '../../assets/outcome.svg'
 import totalSvg from '../../assets/total.svg'
-import { useContext, useEffect, useState } from "react"
-import { TransactionsContext } from "../../TransactionsProvider"
-
 
 export const Summary = () => {
-  const { transactions } = useContext(TransactionsContext);
+  const { transactions } = useTransactions();
   const [summary, setSummary] = useState({incomes: 0, outcomes: 0, total: 0});
 
   useEffect(() => {
@@ -39,7 +39,9 @@ export const Summary = () => {
         <strong>{new Intl.NumberFormat('pt-BR', {
           style: 'currency',
           currency: 'BRL'
-        }).format(summary.incomes)}</strong>
+        }).format(summary.incomes)}
+        </strong>
+        <p>Última entrada dia 13 de abril</p>
       </div>
 
       <div>
@@ -50,7 +52,9 @@ export const Summary = () => {
         <strong>-{new Intl.NumberFormat('pt-BR', {
           style: 'currency',
           currency: 'BRL'
-        }).format(summary.outcomes)}</strong>
+        }).format(summary.outcomes)}
+        </strong>
+        <p>Última entrada dia 13 de abril</p>
       </div>
 
       <div className="hightlight-total">
@@ -61,12 +65,9 @@ export const Summary = () => {
         <strong>{new Intl.NumberFormat('pt-BR', {
           style: 'currency',
           currency: 'BRL'
-        }).format(summary.total)}</strong>
+        }).format(summary.total)}
+        </strong>
       </div>
     </Container>
   )
-}
-
-function TransactionsContex(TransactionsContex: any): { transactions: any } {
-  throw new Error("Function not implemented.")
 }

@@ -88,4 +88,22 @@ export const GlobalStyle = createGlobalStyle`
       transform: scale(1.1);
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    .react-modal-overlay {
+      align-items: flex-end;
+      overflow-y: auto;
+    }
+    
+    .react-modal-content {
+      border-radius: 1.6rem 1.6rem 0 0 ;
+      padding: 2.4rem 2.4rem 4rem;
+      position: relative;
+    }
+
+    .react-modal-close {
+      top: 2rem;
+      right: 1.1rem;
+    }
+  }
 `

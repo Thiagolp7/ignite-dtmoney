@@ -8,6 +8,8 @@ export const Container = styled.table`
   border-spacing: 0 .8rem;
   color: var(--text-body);
   
+  overflow-x: auto;
+
   th {
     text-align: left;
     font-weight: 400;

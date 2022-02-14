@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { useTransactions } from "../../hooks/useTransactions";
+
 import { Container } from "./styles"
+
 import { FaTrash } from 'react-icons/fa'
-import { TransactionsContext } from "../../TransactionsProvider";
 
 export const TransactionsTable = () => {
-  const { transactions, deleteTransaction } = useContext(TransactionsContext);
+  const { transactions, deleteTransaction } = useTransactions();
   return (
     <Container>
       <thead>
