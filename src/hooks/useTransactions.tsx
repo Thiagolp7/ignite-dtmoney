@@ -20,34 +20,57 @@ interface TransactionContextData {
   transactions: Transaction[];
   createNewTransaction: (transaction: TransactionInput) => Promise<void>;
   deleteTransaction: (transaction: Transaction) => Promise<void>;
+  lastDeposit: string;
+  lastWithdraw: string;
 }
 
 const TransactionsContext = createContext({} as TransactionContextData);
 
 export const TransactionsProvider = ({ children }: TransactionsProviderProps) => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [lastDeposit, setLastDeposit] = useState('');
+  const [lastWithdraw, setLastWithdraw] = useState('');
+
+  
 
   useEffect(() => {
     api.get('/transactions')
-    .then(response => setTransactions(response.data.transactions))
+    .then(response => {
+      const transactions = response.data.transactions.reverse()
+      setLastWithdrawAndDeposit(transactions)
+      return setTransactions(transactions)
+    })    
   },[])
 
   async function createNewTransaction(transactionInput: TransactionInput){
-    console.log(transactions)
     const response = await api.post('/transactions', transactionInput)
     const transaction = await response.data.transaction
-    setTransactions([...transactions, transaction])
+    const newTransactions = [transaction, ...transactions]
+    setTransactions(newTransactions)
+    setLastWithdrawAndDeposit(newTransactions)
   }
   
   async function deleteTransaction(transaction: Transaction){
     const response = await api.delete(`/transactions/${transaction.id}`)
-    setTransactions(transactions.filter((transactionItem) => {
+    const newTransactions = transactions.filter((transactionItem) => {
       return transactionItem.id !== transaction.id
-    }))
+    })
+    setTransactions(newTransactions)
+    setLastWithdrawAndDeposit(newTransactions)
+
+  }
+
+  function setLastWithdrawAndDeposit(transactions: Transaction[]){
+    const deposits = transactions.filter((transaction: Transaction) =>  transaction.type === 'deposit')
+    const withdraws = transactions.filter((transaction: Transaction) => transaction.type === 'withdraw')
+    const lastDeposit = deposits[0].createdAt
+    const lastWithdraw = withdraws[0].createdAt
+    setLastDeposit(String(lastDeposit))
+    setLastWithdraw(String(lastWithdraw))
   }
   
   return (
-    <TransactionsContext.Provider value={{ transactions, createNewTransaction, deleteTransaction }}>
+    <TransactionsContext.Provider value={{ transactions, createNewTransaction, deleteTransaction, lastDeposit, lastWithdraw }}>
       {children}
     </TransactionsContext.Provider>
   )

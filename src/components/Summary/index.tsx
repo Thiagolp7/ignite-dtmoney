@@ -8,7 +8,7 @@ import outcomeSvg from '../../assets/outcome.svg'
 import totalSvg from '../../assets/total.svg'
 
 export const Summary = () => {
-  const { transactions } = useTransactions();
+  const { transactions , lastDeposit, lastWithdraw} = useTransactions();
   const [summary, setSummary] = useState({incomes: 0, outcomes: 0, total: 0});
 
   useEffect(() => {
@@ -41,7 +41,17 @@ export const Summary = () => {
           currency: 'BRL'
         }).format(summary.incomes)}
         </strong>
-        <p>Última entrada dia 13 de abril</p>
+        <p>
+          {"Última entrada "}
+          { lastDeposit !== '' ? 
+            new Intl.DateTimeFormat('Pt-BR', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric'
+            }).format(new Date(lastDeposit))
+            : ''
+          }
+        </p>
       </div>
 
       <div>
@@ -54,7 +64,17 @@ export const Summary = () => {
           currency: 'BRL'
         }).format(summary.outcomes)}
         </strong>
-        <p>Última entrada dia 13 de abril</p>
+        <p>
+          {"Última saída "}
+          { lastWithdraw !== '' ? 
+            new Intl.DateTimeFormat('Pt-BR', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric'
+            }).format(new Date(lastWithdraw))
+            : ''
+          }
+        </p>
       </div>
 
       <div className="hightlight-total">
