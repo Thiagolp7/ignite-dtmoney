@@ -1,12 +1,8 @@
  # 💰 dt money 
 > 👉 Aplicação feita no Charpter II - Ignite React da <a href="https://github.com/Rocketseat" target="_blank">Rocktseat</a>
 
-![ignite-dtmoney](https://user-images.githubusercontent.com/92824127/154295721-d43ff5c0-8ed2-47f1-8885-6ba85f3bf189.gif)
-
-
-
-
   
+https://user-images.githubusercontent.com/92824127/154310563-cd40f3ef-25fc-4b40-80bc-d8fd582655b4.mp4
 
 
 ## :rocket: Execute o projeto
