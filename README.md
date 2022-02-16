@@ -4,14 +4,19 @@
   
 https://user-images.githubusercontent.com/92824127/154310563-cd40f3ef-25fc-4b40-80bc-d8fd582655b4.mp4
 
+---
+## 📌 Ajustes e melhorias
 
+- [x] Botão e rota para deletar transações.
+- [x] Responsividade e versão mobile.
+- [x] Mostrar ultimas transações no topo.
+
+---
 ## :rocket: Execute o projeto
 
 #### 💻 Para rodar o projeto você vai precisar:
 <a href="https://nodejs.org/en/" target="_blank"><img src="https://img.shields.io/badge/Node-v16.13.2-brightgreen" alt="nodejs"></a>
 <a href="https://git-scm.com/" target="_blank"><img src="https://img.shields.io/badge/Git-2.35.1%20-red" alt="git"></a> 
-
-
 
 ---
 #### :compass: Passo a passo
