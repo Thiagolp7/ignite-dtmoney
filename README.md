@@ -1,11 +1,21 @@
-# ignite-dtmoney
+ # 💰 dt money 
+> 👉 Aplicação feita no Charpter II - Ignite React da <a href="https://github.com/Rocketseat" target="_blank">Rocktseat</a>
+
+![ignite-dtmoney](https://user-images.githubusercontent.com/92824127/154295721-d43ff5c0-8ed2-47f1-8885-6ba85f3bf189.gif)
+
+
+
+
+  
 
 
 ## :rocket: Execute o projeto
 
-Você vai precisar de:
-- <a href="https://nodejs.org/en/" target="_blank"> Nodejs </a>
-- Git
+#### 💻 Para rodar o projeto você vai precisar:
+<a href="https://nodejs.org/en/" target="_blank"><img src="https://img.shields.io/badge/Node-v16.13.2-brightgreen" alt="nodejs"></a>
+<a href="https://git-scm.com/" target="_blank"><img src="https://img.shields.io/badge/Git-2.35.1%20-red" alt="git"></a> 
+
+
 
 ---
 #### :compass: Passo a passo
@@ -24,3 +34,28 @@ cd ignite-dtmoney && npm install && npm run dev
 ```bash
 http://localhost:3000/
 ```
+
+
+--- 
+## :hammer_and_wrench: Tecnologias
+
+<div align="right"> 
+  
+  ![languages](https://img.shields.io/github/languages/count/thiagolp7/ignite-dtmoney) 
+
+</div>
+
+- <a href="https://reactjs.org/"> React Js </a>
+- <a href="https://www.typescriptlang.org/"> Typescript </a>
+- <a href="https://styled-components.com/"> Styled Components </a>
+- <a href="https://axios-http.com/"> Axios </a>
+- <a href="https://miragejs.com/"> MirageJs (FakeAPI) </a>
+
+
+
+
+
+
+
+
+
